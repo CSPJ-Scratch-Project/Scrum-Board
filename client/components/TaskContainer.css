@@ -1,0 +1,32 @@
+.taskColumns-container {
+  /* border: 2px solid black; */
+  width: 500px;
+  height: 400px;
+  display: grid;
+
+  grid-template-rows: 100px 1fr;
+
+}
+
+.projectName {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid blue;
+}
+
+.columns-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#col-1 {
+  border: 2px solid green;
+} 
+
+#col-2 {
+  border: 2px solid orange;
+}
+#col-3 {
+  border: 2px solid pink;
+}
