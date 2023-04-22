@@ -23,7 +23,7 @@ export const ProjectContainer = () => {
 
     return (<div>
         HelloHelloHello
-        <div className="projectContainer">
+        <div className="projectContainer" style = {{overflowY: 'auto', height: '700px', width: '450px', border: '3px solid black', display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
             {arrContainer}
         </div>
         <button onClick={handleAddProject}>Add Project</button>
