@@ -12,7 +12,7 @@ const pool = new Pool({
 
 // Body parser middleware
 app.use(express.json());
-
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   return res.send('server.js test');
@@ -36,10 +36,32 @@ app.post('/users', (req, res) => {
     if (error) {
       throw error;
     }
-    res.status(201).send(`User added with ID: ${results.insertId}`);
+    res.status(201).send(`User added.`);
   });
 });
 
+// Add new project
+// Req body should include user_id and name
+app.post('/projects', (req, res) => {
+  const { user_id, name } = req.body;
+  pool.query('INSERT INTO projects (user_id, name) VALUES ($1, $2)', [user_id, name], (error, results) => {
+    if (error) {
+      throw error;
+    }
+    res.status(201).send(`Project added.`);
+  });
+});
+
+// Get all projects for a user
+app.get('/projects', (req, res) => {
+  const { user_id } = req.body;
+  pool.query('SELECT * FROM projects WHERE user_id = $1', [user_id], (error, results) => {
+    if (error) {
+      throw error;
+    }
+    res.status(200).json(results.rows);
+  });
+});
 
 
 app.listen(3000, () => {
