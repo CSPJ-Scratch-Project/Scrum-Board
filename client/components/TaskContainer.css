@@ -1,0 +1,21 @@
+.taskColumns-container {
+  border: 2px solid red;
+  width: 500px;
+  height: 400px;
+  display: grid;
+
+  grid-template-rows: 100px 1fr;
+
+}
+
+.projectName {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid blue;
+}
+
+.columns-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
