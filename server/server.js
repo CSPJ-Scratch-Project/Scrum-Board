@@ -13,8 +13,10 @@ const pool = new Pool({
 // Body parser middleware
 app.use(express.json());
 
+
 app.get('/', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../index.html'));
+  return res.send('server.js test');
+  // return res.status(200).sendFile(path.join(__dirname, '../index.html'));
 });
 
 // Return all users to test connection

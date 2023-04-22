@@ -3,9 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development', 
-    entry: {
-      src: '/client/index.js' //from '/client/index.js'
-    },
+    entry: './client/index.js',
     output: {
       filename: 'bundle.js',
       path: path.resolve(__dirname, './build')
@@ -37,16 +35,18 @@ module.exports = {
       }),
     ],
     devServer: {
-      // enable HMR on the devServer
-      hot: true,
+      host: 'localhost',
+      port: 8080,
       static: {
-        publicPath: '/build',
-        directory: path.resolve(__dirname, 'build')
+        directory: path.join(__dirname, 'build'),
       },
-      proxy: {
-        '/api': 'http://localhost:3000'
-      }
-    }
+      hot: true,
+      historyApiFallback: true,
+      headers: {'Access-Control-Allow-Origin': '*'}
+    },
+      // proxy: {
+      //   '/api': 'http://localhost:3000'
+      // }
 }
 
 
