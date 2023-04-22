@@ -14,12 +14,12 @@ const pool = new Pool({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve index.html on root
 app.get('/', (req, res) => {
-  return res.send('server.js test');
-  // return res.status(200).sendFile(path.join(__dirname, '../index.html'));
+  return res.status(200).sendFile(path.join(__dirname, '../index.html'));
 });
 
-// Return all users to test connection
+// Get all users
 app.get('/users', (req, res) => {
   pool.query('SELECT * FROM users', (error, results) => {
     if (error) {
