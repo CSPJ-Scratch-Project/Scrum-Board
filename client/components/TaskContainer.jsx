@@ -10,10 +10,10 @@ export const TaskContainer = ({project}) => {
       : "Completed";
     // taskColumnsArr.push(<div>Column</div>)
     taskColumnsArr.push(
-      <div id={`col-${i}`}>
+      <div id={`col-${i+1}`}>
         <TaskColumn 
-        key={`taskCol${i}`} 
-        id={`taskCol${i}`}
+        key={`taskCol${i+1}`} 
+        id={`taskCol${i+1}`}
         name={columnName}
       />
       </div>)
