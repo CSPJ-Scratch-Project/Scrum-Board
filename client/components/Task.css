@@ -1,0 +1,8 @@
+.taskBox {
+  height: '600px';
+  color: black;
+  background: #cecece;
+  /* padding: 2 rem; */
+  border: 1px solid rgb(31, 31, 31);
+  /* box-shadow: 1px 1px 5px rgba(22, 22, 22, 0.915); */
+}
