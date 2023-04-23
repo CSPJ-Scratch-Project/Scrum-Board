@@ -9,6 +9,6 @@ export const App = () => {
   <>
   <div>test</div>
    {/* <div><ProjectContainer /></div> */}
-   {/* <div><TaskContainer /></div> */}
+   <div><TaskContainer /></div>
   </>)
 }
