@@ -15,7 +15,7 @@ export const TaskContainer = ({project}) => {
     taskColumnsArr.push(
       <div id={`col-${i+1}`}>
         <TaskColumn 
-        taskInfo={taskInfo}
+        // taskInfo={taskInfo}
         key={`taskCol${i+1}`} 
         id={`taskCol${i+1}`}
         name={columnName}
