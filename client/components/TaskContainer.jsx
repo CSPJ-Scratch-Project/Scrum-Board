@@ -1,6 +1,9 @@
 import React from 'react';
 import './TaskContainer.css';
+import TaskColumn from './TaskColumn.jsx';
+
 export const TaskContainer = ({project}) => {
+  console.log('entering task container');
   const taskColumnsArr = [];
   for (let i = 0; i < 3; i++) {
     const columnName = i === 0 
@@ -12,6 +15,7 @@ export const TaskContainer = ({project}) => {
     taskColumnsArr.push(
       <div id={`col-${i+1}`}>
         <TaskColumn 
+        taskInfo={taskInfo}
         key={`taskCol${i+1}`} 
         id={`taskCol${i+1}`}
         name={columnName}
@@ -20,7 +24,8 @@ export const TaskContainer = ({project}) => {
   }
   return (
     <div className={"taskColumns-container"}>
-      <div className="projectName">{project.name} </div>
+      <div className="projectName">test</div>
+      {/* <div className="projectName">{project.name} </div> */}
       <div className="columns-container">
         {taskColumnsArr}
       </div>
