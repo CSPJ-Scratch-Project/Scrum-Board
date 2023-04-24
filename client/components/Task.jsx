@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Task.css';
 
-const Task = ({ taskInfo, key, state, setState, ind, index }) => {
+const Task = ({ taskInfo, state, setState, ind, index }) => {
   // hooks for title text edit field
   const [toggleTitle, setToggleTitle] = useState(true);
   const [taskTitle, setTaskTitle] = useState('Title');
