@@ -19,7 +19,7 @@ const ProjectContextProvider = ({ children }) => {
     //unfinished***
     const fetchUserProjects = async () => {
       try {
-        //make call to backend endpoint that will request user project data
+        //make call to backend endpoint that will request user project dataa
         const response = await fetch(endpoint);
         const jsonResult = await response.json();
 
