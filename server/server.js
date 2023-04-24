@@ -53,9 +53,9 @@ app.post('/projects', (req, res) => {
 });
 
 // Get all projects for a user
-app.get('/projects', (req, res) => {
-  const { user_id } = req.body;
-  pool.query('SELECT * FROM projects WHERE user_id = $1', [user_id], (error, results) => {
+app.get('/projects/:id', (req, res) => {
+  const { id } = req.params;
+  pool.query('SELECT * FROM projects WHERE user_id = $1', [id], (error, results) => {
     if (error) {
       throw error;
     }
@@ -87,9 +87,9 @@ app.post('/tasks', (req, res) => {
 });
 
 // Get all tasks for a project
-app.get('/tasks', (req, res) => {
-  const { project_id } = req.body;
-  pool.query('SELECT * FROM tasks WHERE project_id = $1', [project_id], (error, results) => {
+app.get('/tasks/:id', (req, res) => {
+  const { id } = req.params;
+  pool.query('SELECT * FROM tasks WHERE project_id = $1', [id], (error, results) => {
     if (error) {
       throw error;
     }

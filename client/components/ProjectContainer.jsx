@@ -13,6 +13,7 @@ export const ProjectContainer = () => {
     }
     
     const handleAddProject = () => { //add function for onClick event 
+      
         setNumProjects(numProjects + 1);
         arrContainer.push(
           <div id="project-sidebar">
