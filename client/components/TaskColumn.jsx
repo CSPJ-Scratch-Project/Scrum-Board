@@ -19,7 +19,7 @@ const TaskColumn = ({ taskInfo, id, name }) => {
   useEffect(() => {}, []);
 
   return (
-    <>
+    <div className="column">
       <div>{name}</div>
 
       <div
@@ -41,7 +41,7 @@ const TaskColumn = ({ taskInfo, id, name }) => {
                   }}}
                 onClick={taskCreator}>New Task</Button> */}
       </div>
-    </>
+    </div>
   );
 };
 

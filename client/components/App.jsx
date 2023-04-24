@@ -11,7 +11,9 @@ export const App = () => {
       <div>
         <ProjectContainer />
       </div>
-      {/* <div><TaskContainer /></div> */}
+      <div>
+        <TaskContainer />
+      </div>
     </>
   );
 };
