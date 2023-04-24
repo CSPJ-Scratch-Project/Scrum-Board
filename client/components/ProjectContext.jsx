@@ -23,6 +23,7 @@ const ProjectContextProvider = ({ children }) => {
       try {
         //make call to backend endpoint that will request user project data
         const response = await fetch(projectEndpoint);
+
         const jsonResult = await response.json();
 
         //test log
