@@ -1,10 +1,9 @@
 .taskColumns-container {
   /* border: 2px solid black; */
-  width: 500px;
-  height: 300px;
+  /* width: 500px; */
+  /* height: 100vh; */
   display: grid;
-  grid-template-rows: 100px 200px;
-
+  grid-template-rows: 100px 100px 1fr;
 }
 
 .projectName {
@@ -14,14 +13,22 @@
   border: 2px solid blue;
 }
 
+.colunmNamesRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-items: center;
+  font-size: 2rem;
+  padding-block: 1rem;
+}
 .columns-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  border: 2px solid red;
 }
 
 #col-1 {
   border: 2px solid green;
-} 
+}
 
 #col-2 {
   border: 2px solid orange;
