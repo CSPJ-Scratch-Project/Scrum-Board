@@ -46,7 +46,7 @@ const ProjectContextProvider = ({ children }) => {
         console.log('jsonResult is ', jsonResult);
 
         //store user task data in our state
-        setUsertasks(jsonResult);
+        setUserTasks(jsonResult);
       } catch (error) {
         console.log('ERROR: ', error);
       }
@@ -54,9 +54,10 @@ const ProjectContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <ProjectContext.Provider value={{ playlists, token }}>
+    <ProjectContext.Provider value={{ userProjects, userTasks }}>
       {children}
     </ProjectContext.Provider>
   );
 };
+
 export { ProjectContext, ProjectContextProvider };

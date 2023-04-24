@@ -1,5 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { App } from './components/App.jsx';
+import { ProjectContextProvider } from './components/ProjectContext.jsx';
 
-render(<App />, document.getElementById('root'));
+render(
+  <ProjectContextProvider>
+    <App />
+  </ProjectContextProvider>,
+  document.getElementById('root')
+);

@@ -8,6 +8,49 @@ import {
 } from 'react-beautiful-dnd';
 import { v4 as uuid } from 'uuid'; // creat unique id
 
+<<<<<<< HEAD
+=======
+
+// fake data generator
+
+const getItems = (count, offset = 0) =>
+  Array.from({ length: count }, (v, k) => k).map(k => ({
+    id: `item-${k + offset}-${new Date().getTime()}`,
+    content: `Project  ${k + offset}`,
+  }));
+
+// helper function to reorder the result
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
+const grid = 8; // gap spacing
+
+const getItemStyle = (isDragging, draggableStyle) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: 'none',
+  padding: grid * 2,
+  margin: `0 0 ${grid}px 0`,
+  display: 'flex',
+  justifyContent: 'space-between',
+
+  // change background colour if dragging
+  background: isDragging ? '#87CBB9' : 'whitesmoke',
+
+  // styles we need to apply on draggables
+  ...draggableStyle,
+});
+
+const getListStyle = isDraggingOver => ({
+  background: isDraggingOver ? 'lightblue' : 'lightblue',
+  padding: grid,
+  width: '300px',
+});
+
+>>>>>>> dev
 export const ProjectContainer = () => {
   //userProjects and userTasks holds all project data and task data respectively
   const { userProjects, userTasks } = useContext(ProjectContext);
@@ -132,11 +175,21 @@ export const ProjectContainer = () => {
                 type="file"
                 id="image-upload"
                 style={{
-                  // display: 'flex',
-                  // border: '3px solid black',
                   alignContent: 'center',
                   justifyContent: 'center',
                   marginInline: '20%',
+                }}
+                onChange={(event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const imageContainer = document.getElementById("image-container");
+                        imageContainer.style.backgroundImage = `url(${e.target.result})`;
+                        
+                    };
+                    reader.readAsDataURL(file);
+                    }
                 }}
               />
             </form>
