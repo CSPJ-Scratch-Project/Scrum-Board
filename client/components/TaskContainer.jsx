@@ -95,16 +95,18 @@ export const TaskContainer = ({ project }) => {
     }
   }
 
-  // FIXME: neeed to
-  const handleAddTask = items => {
-    const newTask = {
-      id: uuid(), // generate a unique ID for the new Task
-      content: `Task ${items.length + 1}`,
-    };
-    //
-    const updatedItems = [...items, newTask]; // add the new Task to the items array
-    setItems(updatedItems);
-  };
+  // FIXME: need
+  // const handleAddTask = ind => {
+  //   const items = state[ind];
+  //   const newTask = {
+  //     id: uuid(), // generate a unique ID for the new project
+  //     content: `Task ${items.length + 1}`,
+  //   };
+  //   const newState = [...state];
+  //   const updatedItems = [...items, newTask]; // add the new project to the items array
+  //   newState[ind] = updatedItems;
+  //   setState(newState);
+  // };
 
   return (
     <div style={{ background: '#577D86', height: '100vh' }}>
@@ -172,14 +174,56 @@ export const TaskContainer = ({ project }) => {
             ))}
           </DragDropContext>
         </div>
-        <button
-          style={{ width: '100px', height: '50px', marginTop: '2rem' }}
-          onClick={() => {
-            setItems(handleAddTask);
-          }}
-        >
-          New Task
-        </button>
+        <div className="buttonRow">
+          <button
+            style={{ width: '100px', height: '50px', marginTop: '2rem' }}
+            onClick={() => {
+              const items = state[0];
+              const newTask = {
+                id: uuid(), // generate a unique ID for the new project
+                content: `Task ${items.length + 1}`,
+              };
+              const newState = [...state];
+              const updatedItems = [...items, newTask]; // add the new project to the items array
+              newState[0] = updatedItems;
+              setState(newState);
+            }}
+          >
+            New Task
+          </button>
+          <button
+            style={{ width: '100px', height: '50px', marginTop: '2rem' }}
+            onClick={() => {
+              const items = state[1];
+              const newTask = {
+                id: uuid(), // generate a unique ID for the new project
+                content: `Task ${items.length + 1}`,
+              };
+              const newState = [...state];
+              const updatedItems = [...items, newTask]; // add the new project to the items array
+              newState[1] = updatedItems;
+              setState(newState);
+            }}
+          >
+            New Task
+          </button>
+          <button
+            style={{ width: '100px', height: '50px', marginTop: '2rem' }}
+            onClick={() => {
+              const items = state[2];
+              const newTask = {
+                id: uuid(), // generate a unique ID for the new project
+                content: `Task ${items.length + 1}`,
+              };
+              const newState = [...state];
+              const updatedItems = [...items, newTask]; // add the new project to the items array
+              newState[2] = updatedItems;
+              setState(newState);
+            }}
+          >
+            New Task
+          </button>
+        </div>
       </div>
     </div>
   );
