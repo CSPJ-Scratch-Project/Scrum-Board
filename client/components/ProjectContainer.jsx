@@ -129,7 +129,6 @@ export const ProjectContainer = () => {
           className="topBarContainer"
           style={{
             display: 'flex',
-            border: '3px solid yellow',
             width: '300px',
           }}
         >
@@ -162,7 +161,7 @@ export const ProjectContainer = () => {
                 marginBottom: '1rem',
               }}
             ></div>
-            <div> User 1 Name</div>
+            <div>User</div>
             <form style={{ textAlign: 'center' }}>
               <input
                 type="file"
@@ -195,7 +194,6 @@ export const ProjectContainer = () => {
             overflowY: 'auto',
             maxHeight: '400px',
             // width: '450px',
-            border: '2px solid red',
 
             display: 'flex',
             alignItems: 'center',
