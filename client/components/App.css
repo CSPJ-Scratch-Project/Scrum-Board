@@ -1,0 +1,9 @@
+.container {
+  /* margin: 5%; */
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+/* body {
+  background-color: #569daa;
+} */
