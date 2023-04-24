@@ -26,6 +26,12 @@
   border: 2px solid red;
 }
 
+.buttonRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-items: center;
+}
+
 #col-1 {
   border: 2px solid green;
 }
