@@ -13,14 +13,17 @@ const ProjectContext = createContext(null);
 const ProjectContextProvider = ({ children }) => {
   //hook to store user project data that is returned from call to backend
   const [ userProjects, setUserProjects ] = useState({});
+  const [ userTasks, setUserTasks ] = useState({});
 
   //runs only on first render
   useEffect(() => {
+    const projectEndpoint = 'http://localhost:3000/projects/5'
     //unfinished***
     const fetchUserProjects = async () => {
       try {
-        //make call to backend endpoint that will request user project dataa
-        const response = await fetch(endpoint);
+        //make call to backend endpoint that will request user project data
+        const response = await fetch(projectEndpoint);
+
         const jsonResult = await response.json();
 
         //test log
@@ -33,10 +36,28 @@ const ProjectContextProvider = ({ children }) => {
         console.log('ERROR: ', error);
       }
     }
+    const taskEndpoint = 'http://localhost:3000/tasks/5'
+    //unfinished***
+    const fetchUserTasks = async () => {
+      try {
+        //make call to backend endpoint that will request user task data
+        const response = await fetch(taskEndpoint);
+        const jsonResult = await response.json();
+
+        //test log
+        console.log('jsonResult is ', jsonResult);
+        
+        //store user task data in our state
+        setUsertasks(jsonResult);
+      }
+      catch (error) {
+        console.log('ERROR: ', error);
+      }
+    }
   },[])
 
   return (
-    <ProjectContext.Provider value={{ playlists, token }}>
+    <ProjectContext.Provider value={{ userProjects, userTasks }}>
       { children }
     </ProjectContext.Provider>)
 }

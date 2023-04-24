@@ -37,7 +37,7 @@ const Task = ({ taskInfo, key }) => {
       )}
 
       {/* click to edit field for task body */}
-      {toggleBody 
+      {/* {toggleBody 
         ? (
         <p onDoubleClick={() => {setToggleBody(false)}} >{taskBody}</p> ) 
         : (
@@ -58,7 +58,7 @@ const Task = ({ taskInfo, key }) => {
             }
           }}
         />
-      )}
+      )} */}
 
     </article>
   )
