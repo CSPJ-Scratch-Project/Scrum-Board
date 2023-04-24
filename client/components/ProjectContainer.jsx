@@ -47,46 +47,7 @@ const getListStyle = isDraggingOver => ({
 });
 
 export const ProjectContainer = () => {
-    const [numProjects, setNumProjects] = useState(4);
-    const arrContainer = [];
-    for (let i = 0; i<numProjects; i++){ //hardcoding number of projects
-        arrContainer.push(
-            <div id = 'project-sidebar'>
-                <Project id = {`${i+1}`}/> 
-            </div>
-        )
-    }
-    
-    const handleAddProject = () => { //add function for onClick event 
-      
-        setNumProjects(numProjects + 1);
-        arrContainer.push(
-          <div id="project-sidebar">
-            <Project id={`${numProjects + 1}`} />
-          </div>
-        );
   const [items, setItems] = useState(getItems(5));
-
-  function onDragEnd(result) {
-    // dropped outside the list
-    if (!result.destination) {
-      return;
-    }
-    // reorder the list
-    const updatedItems = reorder(
-      items,
-      result.source.index,
-      result.destination.index
-    );
-
-    setItems(updatedItems);
-  }
-
-  const handleAddProject = () => {
-    const newProject = {
-      id: uuid(), // generate a unique ID for the new project
-      content: `Project ${items.length + 1}`,
-    };
 
   function onDragEnd(result) {
     // dropped outside the list
