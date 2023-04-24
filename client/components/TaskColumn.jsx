@@ -19,10 +19,10 @@ const TaskColumn = ({ taskInfo, id, name }) => {
   }, []);
 
   return (
-    <>
+    <div className='column'>
       <div>{name}</div>
 
-        <div className='tasksBox' style={{ maxHeight: 400, overflowY: 'auto' }}>
+        <div className='tasksBox' style={{ width: 180, maxHeight: 400, overflowY: 'auto' }}>
           {tasks}
         </div>
 
@@ -38,7 +38,7 @@ const TaskColumn = ({ taskInfo, id, name }) => {
                   }}}
                 onClick={taskCreator}>New Task</Button> */}
         </div>
-    </>
+    </div>
   );
 }
 

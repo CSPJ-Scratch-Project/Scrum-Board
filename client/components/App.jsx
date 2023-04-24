@@ -8,7 +8,7 @@ export const App = () => {
   return (
   <>
   <div>test</div>
-   {/* <div><ProjectContainer /></div> */}
+   <div><ProjectContainer /></div>
    <div><TaskContainer /></div>
   </>)
 }

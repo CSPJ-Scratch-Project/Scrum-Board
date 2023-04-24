@@ -9,10 +9,9 @@ const Task = ({ taskInfo, key }) => {
   const [ toggleBody, setToggleBody ] = useState(true);
   const [ taskBody, setTaskBody] = useState('Body')
 
-
   return (
     <article className='taskBox'>
-      
+
       {/* click to edit field for task title */}
       {toggleTitle 
         ? (
@@ -23,6 +22,9 @@ const Task = ({ taskInfo, key }) => {
           value={taskTitle}
           onChange={(event) => {
             setTaskTitle(event.target.value)
+          }}
+          onBlur={() => {
+            setToggleTitle(true)
           }}
           onKeyDown={(event) => {
             if (event.key === 'Enter' || event.key === 'Escape') {
@@ -44,6 +46,9 @@ const Task = ({ taskInfo, key }) => {
           value={taskBody}
           onChange={(event) => {
             setTaskBody(event.target.value)
+          }}
+          onBlur={() => {
+            setToggleBody(true)
           }}
           onKeyDown={(event) => {
             if (event.key === 'Enter' || event.key === 'Escape') {
