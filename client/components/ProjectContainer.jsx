@@ -23,23 +23,26 @@ export const ProjectContainer = () => {
   console.log('userProjects is', userProjects);
   console.log('userProjects: ', Array.isArray(userProjects));
 
-  const [initItems, setInit] = useState([]);
+  // const [initItems, setInit] = useState([]);
   // populate array of projects
-  const initializeArr = () => {
-    const result = [];
-    userProjects.forEach((el, i) =>
-      result.push({
-        id: `project-${i}-${new Date().getTime()}`,
-        // text content of the project
-        content: `${userProjects[i].name}`,
-      })
-    );
-    console.log('result is ', result);
-    return result;
-  };
+const initializeArr = () => {
+  const result = userProjects.map((project) => ({
+    id: uuid(),
+    content: project.name
+  }));
+  console.log('this is result in initialize arr: ', result)
+  return result;
+};
+
   // setInit(initializeArr());
 
-  const [items, setItems] = useState(initializeArr());
+  const [items, setItems] = useState([]);
+
+useEffect(() => {
+  const result = initializeArr();
+  setItems(result);
+}, [userProjects]);
+  console.log('this is the item in items: ', items)
 
   // useEffect(() => {
   //   setInit(initializeArr());
