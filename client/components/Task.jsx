@@ -19,7 +19,7 @@ const Task = ({ content, state, setState, ind, index }) => {
               setToggleTitle(false);
             }}
           >
-            {content}
+            {taskTitle}
           </p>
         ) : (
           <input
