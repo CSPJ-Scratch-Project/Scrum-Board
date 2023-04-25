@@ -147,7 +147,7 @@ export const TaskContainer = ({ project }) => {
                             )}
                           >
                             <Task
-                              taskInfo={taskInfo}
+                              content={item.content}
                               key={index}
                               state={state}
                               setState={setState}
