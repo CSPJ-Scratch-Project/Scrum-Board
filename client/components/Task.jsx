@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Task.css';
 
-const Task = ({ taskInfo, key }) => {
+const Task = ({ taskInfo, state, setState, ind, index }) => {
   // hooks for title text edit field
   const [toggleTitle, setToggleTitle] = useState(true);
   const [taskTitle, setTaskTitle] = useState('Title');
@@ -41,28 +41,43 @@ const Task = ({ taskInfo, key }) => {
       )}
 
       {/* click to edit field for task body */}
-      {/* {toggleBody 
-        ? (
-        <p onDoubleClick={() => {setToggleBody(false)}} >{taskBody}</p> ) 
-        : (
+      {toggleBody ? (
+        <p
+          onDoubleClick={() => {
+            setToggleBody(false);
+          }}
+        >
+          {taskBody}
+        </p>
+      ) : (
         <input
           type="text"
           value={taskBody}
-          onChange={(event) => {
-            setTaskBody(event.target.value)
+          onChange={event => {
+            setTaskBody(event.target.value);
           }}
           onBlur={() => {
-            setToggleBody(true)
+            setToggleBody(true);
           }}
-          onKeyDown={(event) => {
+          onKeyDown={event => {
             if (event.key === 'Enter' || event.key === 'Escape') {
-              setToggleBody(true)
-              event.preventDefault()
-              event.stopPropagation()
+              setToggleBody(true);
+              event.preventDefault();
+              event.stopPropagation();
             }
           }}
         />
-      )} */}
+      )}
+      <button
+        type="button"
+        onClick={() => {
+          const newState = [...state];
+          newState[ind].splice(index, 1);
+          setState(newState.filter(group => group.length));
+        }}
+      >
+        delete
+      </button>
     </article>
   );
 };

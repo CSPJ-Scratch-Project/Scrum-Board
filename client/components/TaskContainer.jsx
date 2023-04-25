@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './TaskContainer.css';
 import TaskColumn from './TaskColumn.jsx';
+import Task from './Task.jsx';
 import {
   DragDropContext,
   Droppable,
@@ -8,6 +9,8 @@ import {
 } from 'react-beautiful-dnd';
 import { v4 as uuid } from 'uuid';
 
+// FIXME: hardcoded for now
+const taskInfo = 'this is task info';
 // fake data generator
 const getItems = (count, offset = 0) =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
@@ -111,7 +114,7 @@ export const TaskContainer = ({ project }) => {
   return (
     <div style={{ background: '#577D86', height: '100vh' }}>
       <div className="taskColumns-container ">
-        <div className="projectName">test</div>
+        <div className="projectName">Current Project</div>
         <div className="colunmNamesRow">
           <div>New</div>
           <div>In Progress</div>
@@ -143,7 +146,15 @@ export const TaskContainer = ({ project }) => {
                               provided.draggableProps.style
                             )}
                           >
-                            <div
+                            <Task
+                              taskInfo={taskInfo}
+                              key={index}
+                              state={state}
+                              setState={setState}
+                              ind={ind}
+                              index={index}
+                            />
+                            {/* <div
                               style={{
                                 display: 'flex',
                                 justifyContent: 'space-around',
@@ -162,7 +173,7 @@ export const TaskContainer = ({ project }) => {
                               >
                                 delete
                               </button>
-                            </div>
+                            </div> */}
                           </div>
                         )}
                       </Draggable>
@@ -175,54 +186,60 @@ export const TaskContainer = ({ project }) => {
           </DragDropContext>
         </div>
         <div className="buttonRow">
-          <button
-            style={{ width: '100px', height: '50px', marginTop: '2rem' }}
-            onClick={() => {
-              const items = state[0];
-              const newTask = {
-                id: uuid(), // generate a unique ID for the new project
-                content: `Task ${items.length + 1}`,
-              };
-              const newState = [...state];
-              const updatedItems = [...items, newTask]; // add the new project to the items array
-              newState[0] = updatedItems;
-              setState(newState);
-            }}
-          >
-            New Task
-          </button>
-          <button
-            style={{ width: '100px', height: '50px', marginTop: '2rem' }}
-            onClick={() => {
-              const items = state[1];
-              const newTask = {
-                id: uuid(), // generate a unique ID for the new project
-                content: `Task ${items.length + 1}`,
-              };
-              const newState = [...state];
-              const updatedItems = [...items, newTask]; // add the new project to the items array
-              newState[1] = updatedItems;
-              setState(newState);
-            }}
-          >
-            New Task
-          </button>
-          <button
-            style={{ width: '100px', height: '50px', marginTop: '2rem' }}
-            onClick={() => {
-              const items = state[2];
-              const newTask = {
-                id: uuid(), // generate a unique ID for the new project
-                content: `Task ${items.length + 1}`,
-              };
-              const newState = [...state];
-              const updatedItems = [...items, newTask]; // add the new project to the items array
-              newState[2] = updatedItems;
-              setState(newState);
-            }}
-          >
-            New Task
-          </button>
+          <div>
+            <button
+              style={{ width: '100px', height: '50px', marginTop: '2rem' }}
+              onClick={() => {
+                const items = state[0];
+                const newTask = {
+                  id: uuid(), // generate a unique ID for the new project
+                  content: `Task ${items.length + 1}`,
+                };
+                const newState = [...state];
+                const updatedItems = [...items, newTask]; // add the new project to the items array
+                newState[0] = updatedItems;
+                setState(newState);
+              }}
+            >
+              New Task
+            </button>
+          </div>
+          <div>
+            <button
+              style={{ width: '100px', height: '50px', marginTop: '2rem' }}
+              onClick={() => {
+                const items = state[1];
+                const newTask = {
+                  id: uuid(), // generate a unique ID for the new project
+                  content: `Task ${items.length + 1}`,
+                };
+                const newState = [...state];
+                const updatedItems = [...items, newTask]; // add the new project to the items array
+                newState[1] = updatedItems;
+                setState(newState);
+              }}
+            >
+              New Task
+            </button>
+          </div>
+          <div>
+            <button
+              style={{ width: '100px', height: '50px', marginTop: '2rem' }}
+              onClick={() => {
+                const items = state[2];
+                const newTask = {
+                  id: uuid(), // generate a unique ID for the new project
+                  content: `Task ${items.length + 1}`,
+                };
+                const newState = [...state];
+                const updatedItems = [...items, newTask]; // add the new project to the items array
+                newState[2] = updatedItems;
+                setState(newState);
+              }}
+            >
+              New Task
+            </button>
+          </div>
         </div>
       </div>
     </div>

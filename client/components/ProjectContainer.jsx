@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { ProjectContext } from './ProjectContext.jsx';
 import { Project } from './Project.jsx';
 import {
   DragDropContext,
@@ -7,48 +8,89 @@ import {
 } from 'react-beautiful-dnd';
 import { v4 as uuid } from 'uuid'; // creat unique id
 
+export const ProjectContainer = () => {
+  //userProjects and userTasks holds all project data and task data respectively
+  const { userProjects, userTasks } = useContext(ProjectContext);
 
-// fake data generator
+  const test = [
+    {
+      id: '1',
+      content: 'scrum board',
+    },
+  ];
 
-const getItems = (count, offset = 0) =>
-  Array.from({ length: count }, (v, k) => k).map(k => ({
-    id: `item-${k + offset}-${new Date().getTime()}`,
-    content: `Project  ${k + offset}`,
+  // console.log('userProjects: ', userProjects, 'userTasks: ', userTasks);
+  console.log('userProjects is', userProjects);
+  console.log('userProjects: ', Array.isArray(userProjects));
+
+  // const [initItems, setInit] = useState([]);
+  // populate array of projects
+const initializeArr = () => {
+  const result = userProjects.map((project) => ({
+    id: uuid(),
+    content: project.name
   }));
-
-// helper function to reorder the result
-const reorder = (list, startIndex, endIndex) => {
-  const result = Array.from(list);
-  const [removed] = result.splice(startIndex, 1);
-  result.splice(endIndex, 0, removed);
-
+  console.log('this is result in initialize arr: ', result)
   return result;
 };
-const grid = 8; // gap spacing
 
-const getItemStyle = (isDragging, draggableStyle) => ({
-  // some basic styles to make the items look a bit nicer
-  userSelect: 'none',
-  padding: grid * 2,
-  margin: `0 0 ${grid}px 0`,
-  display: 'flex',
-  justifyContent: 'space-between',
+  // setInit(initializeArr());
 
-  // change background colour if dragging
-  background: isDragging ? '#87CBB9' : 'whitesmoke',
+  const [items, setItems] = useState([]);
 
-  // styles we need to apply on draggables
-  ...draggableStyle,
-});
+useEffect(() => {
+  const result = initializeArr();
+  setItems(result);
+}, [userProjects]);
+  console.log('this is the item in items: ', items)
 
-const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? 'lightblue' : 'lightblue',
-  padding: grid,
-  width: '300px',
-});
+  // useEffect(() => {
+  //   setInit(initializeArr());
+  // }, [initItems]);
 
-export const ProjectContainer = () => {
-  const [items, setItems] = useState(getItems(5));
+  // useEffect(() => {}, []);
+
+  // const getItems = (count, offset = 0) =>
+  //   Array.from({ length: count }, (v, k) => k).map(k => ({
+  //     id: `item-${k + offset}-${new Date().getTime()}`,
+  //     content: `Project  ${k + offset}`,
+  //   }));
+
+  // helper function to reorder the result
+  const reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  };
+  const grid = 8; // gap spacing
+
+  const getItemStyle = (isDragging, draggableStyle) => ({
+    // some basic styles to make the items look a bit nicer
+    userSelect: 'none',
+    padding: grid * 2,
+    margin: `0 0 ${grid}px 0`,
+    display: 'flex',
+    justifyContent: 'space-between',
+
+    // change background colour if dragging
+    background: isDragging ? '#87CBB9' : 'whitesmoke',
+
+    // styles we need to apply on draggables
+    ...draggableStyle,
+  });
+
+  const getListStyle = isDraggingOver => ({
+    background: isDraggingOver ? 'lightblue' : 'lightblue',
+    padding: grid,
+    width: '300px',
+  });
+
+  // the list of projects
+  // const [items, setItems] = useState(getItems());
+
+  console.log('items: ', items);
 
   function onDragEnd(result) {
     // dropped outside the list
@@ -68,11 +110,12 @@ export const ProjectContainer = () => {
   const handleAddProject = () => {
     const newProject = {
       id: uuid(), // generate a unique ID for the new project
-      content: `Project ${items.length + 1}`,
+      name: `Project ${items.length + 1}`,
     };
     const updatedItems = [...items, newProject]; // add the new project to the items array
     setItems(updatedItems);
   };
+
   return (
     <div style={{ background: '#577D86', height: '100vh' }}>
       <div
@@ -89,7 +132,6 @@ export const ProjectContainer = () => {
           className="topBarContainer"
           style={{
             display: 'flex',
-            border: '3px solid yellow',
             width: '300px',
           }}
         >
@@ -122,7 +164,7 @@ export const ProjectContainer = () => {
                 marginBottom: '1rem',
               }}
             ></div>
-            <div> User 1 Name</div>
+            <div>User</div>
             <form style={{ textAlign: 'center' }}>
               <input
                 type="file"
@@ -132,31 +174,21 @@ export const ProjectContainer = () => {
                   justifyContent: 'center',
                   marginInline: '20%',
                 }}
-                onChange={(event) => {
-                    const file = event.target.files[0];
-                    if (file) {
+                onChange={event => {
+                  const file = event.target.files[0];
+                  if (file) {
                     const reader = new FileReader();
-                    reader.onload = (e) => {
-                        const imageContainer = document.getElementById("image-container");
-                        imageContainer.style.backgroundImage = `url(${e.target.result})`;
-                        
+                    reader.onload = e => {
+                      const imageContainer =
+                        document.getElementById('image-container');
+                      imageContainer.style.backgroundImage = `url(${e.target.result})`;
                     };
                     reader.readAsDataURL(file);
-                    }
+                  }
                 }}
               />
             </form>
           </div>
-          {/* <div
-            className="topRightContainer"
-            style={{
-              flex: '1',
-              border: '3px solid green',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          ></div> */}
         </div>
 
         <div
@@ -165,7 +197,6 @@ export const ProjectContainer = () => {
             overflowY: 'auto',
             maxHeight: '400px',
             // width: '450px',
-            border: '2px solid red',
 
             display: 'flex',
             alignItems: 'center',
