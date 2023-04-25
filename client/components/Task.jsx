@@ -1,36 +1,40 @@
-import React, { useState } from 'react'
-import './Task.css'
+import React, { useState } from 'react';
+import './Task.css';
 
 const Task = ({ taskInfo, key }) => {
   // hooks for title text edit field
-  const [ toggleTitle, setToggleTitle ] = useState(true);
-  const [ taskTitle, setTaskTitle] = useState('Title')
+  const [toggleTitle, setToggleTitle] = useState(true);
+  const [taskTitle, setTaskTitle] = useState('Title');
   // hooks for body text edit field
-  const [ toggleBody, setToggleBody ] = useState(true);
-  const [ taskBody, setTaskBody] = useState('Body')
+  const [toggleBody, setToggleBody] = useState(true);
+  const [taskBody, setTaskBody] = useState('Body');
 
   return (
-    <article className='taskBox'>
-
+    <article className="taskBox">
       {/* click to edit field for task title */}
-      {toggleTitle 
-        ? (
-        <p onDoubleClick={() => {setToggleTitle(false)}} >{taskTitle}</p> ) 
-        : (
+      {toggleTitle ? (
+        <p
+          onDoubleClick={() => {
+            setToggleTitle(false);
+          }}
+        >
+          {taskTitle}
+        </p>
+      ) : (
         <input
           type="text"
           value={taskTitle}
-          onChange={(event) => {
-            setTaskTitle(event.target.value)
+          onChange={event => {
+            setTaskTitle(event.target.value);
           }}
           onBlur={() => {
-            setToggleTitle(true)
+            setToggleTitle(true);
           }}
-          onKeyDown={(event) => {
+          onKeyDown={event => {
             if (event.key === 'Enter' || event.key === 'Escape') {
-              setToggleTitle(true)
-              event.preventDefault()
-              event.stopPropagation()
+              setToggleTitle(true);
+              event.preventDefault();
+              event.stopPropagation();
             }
           }}
         />
@@ -59,9 +63,8 @@ const Task = ({ taskInfo, key }) => {
           }}
         />
       )} */}
-
     </article>
-  )
-}
+  );
+};
 
-export default Task
+export default Task;
