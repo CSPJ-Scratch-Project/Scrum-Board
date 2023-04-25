@@ -19,39 +19,28 @@ export const ProjectContainer = () => {
     },
   ];
 
-  // console.log('userProjects: ', userProjects, 'userTasks: ', userTasks);
-  console.log('userProjects is', userProjects);
-  console.log('userProjects: ', Array.isArray(userProjects));
+  console.log('userProjects: ', userProjects, 'userTasks: ', userTasks);
 
-  const [initItems, setInit] = useState([]);
-  // populate array of projects
-  const initializeArr = () => {
-    const result = [];
-    userProjects.forEach((el, i) =>
-      result.push({
-        id: `project-${i}-${new Date().getTime()}`,
-        // text content of the project
-        content: `${userProjects[i].name}`,
-      })
-    );
-    console.log('result is ', result);
-    return result;
-  };
-  // setInit(initializeArr());
-
-  const [items, setItems] = useState(initializeArr());
-
-  // useEffect(() => {
-  //   setInit(initializeArr());
-  // }, [initItems]);
-
-  // useEffect(() => {}, []);
-
-  // const getItems = (count, offset = 0) =>
-  //   Array.from({ length: count }, (v, k) => k).map(k => ({
-  //     id: `item-${k + offset}-${new Date().getTime()}`,
-  //     content: `Project  ${k + offset}`,
-  //   }));
+  // const [initItems, setInit] = useState([]);
+  // // populate array of projects
+  // const initializeArr = () => {
+  //   const result = [];
+  //   userProjects.forEach((el, i) =>
+  //     result.push({
+  //       id: `project-${i}-${new Date().getTime()}`,
+  //       // text content of the project
+  //       content: `${userProjects[i].name}`,
+  //     })
+  //   );
+  //   console.log('result is ', result);
+  //   return result;
+  // };
+  const initializeArr = (count, offset = 0) =>
+    Array.from({ length: count }, (v, k) => k).map(k => ({
+      id: `item-${k + offset}-${new Date().getTime()}`,
+      content: `Project  ${k + offset}`,
+    }));
+  const [items, setItems] = useState(initializeArr(5));
 
   // helper function to reorder the result
   const reorder = (list, startIndex, endIndex) => {
@@ -107,7 +96,7 @@ export const ProjectContainer = () => {
   const handleAddProject = () => {
     const newProject = {
       id: uuid(), // generate a unique ID for the new project
-      name: `Project ${items.length + 1}`,
+      content: `Project ${items.length + 1}`,
     };
     const updatedItems = [...items, newProject]; // add the new project to the items array
     setItems(updatedItems);
@@ -226,7 +215,15 @@ export const ProjectContainer = () => {
                             provided.draggableProps.style
                           )}
                         >
-                          <div>{item.content}</div>
+                          <Project
+                            key={index}
+                            items={items}
+                            setItems={setItems}
+                            index={index}
+                            content={item.content}
+                            id={item.id}
+                          />
+                          {/* <div>{item.content}</div>
                           <button
                             type="button"
                             onClick={() => {
@@ -236,7 +233,7 @@ export const ProjectContainer = () => {
                             }}
                           >
                             delete
-                          </button>
+                          </button> */}
                         </div>
                       )}
                     </Draggable>

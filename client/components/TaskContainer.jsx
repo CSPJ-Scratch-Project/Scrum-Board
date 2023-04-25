@@ -68,9 +68,9 @@ const getListStyle = isDraggingOver => ({
 
 export const TaskContainer = ({ project }) => {
   const [state, setState] = useState([
-    getItems(5),
-    getItems(4, 5),
-    getItems(3, 9),
+    getItems(3),
+    getItems(2, 3),
+    getItems(1, 5),
   ]);
 
   function onDragEnd(result) {
@@ -154,26 +154,6 @@ export const TaskContainer = ({ project }) => {
                               ind={ind}
                               index={index}
                             />
-                            {/* <div
-                              style={{
-                                display: 'flex',
-                                justifyContent: 'space-around',
-                              }}
-                            >
-                              {item.content}
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  const newState = [...state];
-                                  newState[ind].splice(index, 1);
-                                  setState(
-                                    newState.filter(group => group.length)
-                                  );
-                                }}
-                              >
-                                delete
-                              </button>
-                            </div> */}
                           </div>
                         )}
                       </Draggable>
