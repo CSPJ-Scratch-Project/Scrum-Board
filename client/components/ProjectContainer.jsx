@@ -132,7 +132,6 @@ useEffect(() => {
           className="topBarContainer"
           style={{
             display: 'flex',
-            border: '3px solid yellow',
             width: '300px',
           }}
         >
@@ -165,7 +164,7 @@ useEffect(() => {
                 marginBottom: '1rem',
               }}
             ></div>
-            <div> User 1 Name</div>
+            <div>User</div>
             <form style={{ textAlign: 'center' }}>
               <input
                 type="file"
@@ -198,7 +197,6 @@ useEffect(() => {
             overflowY: 'auto',
             maxHeight: '400px',
             // width: '450px',
-            border: '2px solid red',
 
             display: 'flex',
             alignItems: 'center',
