@@ -114,7 +114,7 @@ export const TaskContainer = ({ project }) => {
   return (
     <div style={{ background: '#577D86', height: '100vh' }}>
       <div className="taskColumns-container ">
-        <div className="projectName">test</div>
+        <div className="projectName">Current Project</div>
         <div className="colunmNamesRow">
           <div>New</div>
           <div>In Progress</div>

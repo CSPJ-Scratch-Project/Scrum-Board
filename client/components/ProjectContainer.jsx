@@ -21,26 +21,37 @@ export const ProjectContainer = () => {
 
   console.log('userProjects: ', userProjects, 'userTasks: ', userTasks);
 
-  // const [initItems, setInit] = useState([]);
-  // // populate array of projects
-  // const initializeArr = () => {
-  //   const result = [];
-  //   userProjects.forEach((el, i) =>
-  //     result.push({
-  //       id: `project-${i}-${new Date().getTime()}`,
-  //       // text content of the project
-  //       content: `${userProjects[i].name}`,
-  //     })
-  //   );
-  //   console.log('result is ', result);
-  //   return result;
-  // };
-  const initializeArr = (count, offset = 0) =>
-    Array.from({ length: count }, (v, k) => k).map(k => ({
-      id: `item-${k + offset}-${new Date().getTime()}`,
-      content: `Project  ${k + offset}`,
+  // populate array of projects
+  const initializeArr = () => {
+    const result = userProjects.map(project => ({
+      id: uuid(),
+      content: project.name,
     }));
-  const [items, setItems] = useState(initializeArr(5));
+    console.log('this is result in initialize arr: ', result);
+    return result;
+  };
+
+  // setInit(initializeArr());
+
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const result = initializeArr();
+    setItems(result);
+  }, [userProjects]);
+  console.log('this is the item in items: ', items);
+
+  // useEffect(() => {
+  //   setInit(initializeArr());
+  // }, [initItems]);
+
+  // useEffect(() => {}, []);
+
+  // const getItems = (count, offset = 0) =>
+  //   Array.from({ length: count }, (v, k) => k).map(k => ({
+  //     id: `item-${k + offset}-${new Date().getTime()}`,
+  //     content: `Project  ${k + offset}`,
+  //   }));
 
   // helper function to reorder the result
   const reorder = (list, startIndex, endIndex) => {
@@ -118,7 +129,6 @@ export const ProjectContainer = () => {
           className="topBarContainer"
           style={{
             display: 'flex',
-            border: '3px solid yellow',
             width: '300px',
           }}
         >
@@ -151,7 +161,7 @@ export const ProjectContainer = () => {
                 marginBottom: '1rem',
               }}
             ></div>
-            <div> User 1 Name</div>
+            <div>User</div>
             <form style={{ textAlign: 'center' }}>
               <input
                 type="file"
@@ -184,7 +194,6 @@ export const ProjectContainer = () => {
             overflowY: 'auto',
             maxHeight: '400px',
             // width: '450px',
-            border: '2px solid red',
 
             display: 'flex',
             alignItems: 'center',
