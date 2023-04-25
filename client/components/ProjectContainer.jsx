@@ -19,30 +19,27 @@ export const ProjectContainer = () => {
     },
   ];
 
-  // console.log('userProjects: ', userProjects, 'userTasks: ', userTasks);
-  console.log('userProjects is', userProjects);
-  console.log('userProjects: ', Array.isArray(userProjects));
+  console.log('userProjects: ', userProjects, 'userTasks: ', userTasks);
 
-  // const [initItems, setInit] = useState([]);
   // populate array of projects
-const initializeArr = () => {
-  const result = userProjects.map((project) => ({
-    id: uuid(),
-    content: project.name
-  }));
-  console.log('this is result in initialize arr: ', result)
-  return result;
-};
+  const initializeArr = () => {
+    const result = userProjects.map(project => ({
+      id: uuid(),
+      content: project.name,
+    }));
+    console.log('this is result in initialize arr: ', result);
+    return result;
+  };
 
   // setInit(initializeArr());
 
   const [items, setItems] = useState([]);
 
-useEffect(() => {
-  const result = initializeArr();
-  setItems(result);
-}, [userProjects]);
-  console.log('this is the item in items: ', items)
+  useEffect(() => {
+    const result = initializeArr();
+    setItems(result);
+  }, [userProjects]);
+  console.log('this is the item in items: ', items);
 
   // useEffect(() => {
   //   setInit(initializeArr());
@@ -110,7 +107,7 @@ useEffect(() => {
   const handleAddProject = () => {
     const newProject = {
       id: uuid(), // generate a unique ID for the new project
-      name: `Project ${items.length + 1}`,
+      content: `Project ${items.length + 1}`,
     };
     const updatedItems = [...items, newProject]; // add the new project to the items array
     setItems(updatedItems);
@@ -227,7 +224,15 @@ useEffect(() => {
                             provided.draggableProps.style
                           )}
                         >
-                          <div>{item.content}</div>
+                          <Project
+                            key={index}
+                            items={items}
+                            setItems={setItems}
+                            index={index}
+                            content={item.content}
+                            id={item.id}
+                          />
+                          {/* <div>{item.content}</div>
                           <button
                             type="button"
                             onClick={() => {
@@ -237,7 +242,7 @@ useEffect(() => {
                             }}
                           >
                             delete
-                          </button>
+                          </button> */}
                         </div>
                       )}
                     </Draggable>

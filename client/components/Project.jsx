@@ -1,47 +1,52 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import './Project.css';
 
-export const Project = props => {
-  const [ toggleTitle, setToggleTitle ] = useState(true);
-  console.log('props.id: ', props.id);
+export const Project = ({ content, items, setItems, index, id }) => {
+  const [toggleTitle, setToggleTitle] = useState(true);
+  const [taskTitle, setTaskTitle] = useState(content);
+  // console.log('props.id: ', props.id);
   return (
-    <article>
-    {toggleTitle 
-      ? (
-      <p onDoubleClick={() => {setToggleTitle(false)}} >{taskTitle}</p> ) 
-      : (
-      <input
-        type="text"
-        value={taskTitle}
-        onChange={(event) => {
-          setTaskTitle(event.target.value)
-        }}
-        onBlur={() => {
-          setToggleTitle(true)
-        }}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter' || event.key === 'Escape') {
-            setToggleTitle(true)
-            event.preventDefault()
-            event.stopPropagation()
-          }
-        }}
-      />
-    )}
-    </article>
+    <div className="projectContainer">
+      <div className="projectContent">
+        {toggleTitle ? (
+          <p
+            onDoubleClick={() => {
+              setToggleTitle(false);
+            }}
+          >
+            {taskTitle}
+          </p>
+        ) : (
+          <input
+            type="text"
+            value={taskTitle}
+            onChange={event => {
+              setTaskTitle(event.target.value);
+            }}
+            onBlur={() => {
+              setToggleTitle(true);
+            }}
+            onKeyDown={event => {
+              if (event.key === 'Enter' || event.key === 'Escape') {
+                setToggleTitle(true);
+                event.preventDefault();
+                event.stopPropagation();
+              }
+            }}
+          />
+        )}
+      </div>
+
+      <div>
+        <button
+          type="button"
+          onClick={() => {
+            setItems(items.filter(el => el.id != id));
+          }}
+        >
+          Delete
+        </button>
+      </div>
+    </div>
   );
-  // return (
-  //   <div
-  //     id={props.id}
-  //     style={{
-  //       width: '400px',
-  //       height: '100px',
-  //       border: '2px solid black',
-  //       display: 'flex',
-  //       justifyContent: 'center',
-  //       alignItems: 'center',
-  //     }}
-  //   >
-  //     Project {props.id}
-  //   </div>
-  // );
 };
