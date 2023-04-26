@@ -11,7 +11,7 @@ to the data that App grabs (the information fetched from the database)
 const ProjectContext = createContext(null);
 
 const ProjectContextProvider = ({ children }) => {
-  console.log('projext context here');
+  console.log('project context here');
   //hook to store user project data that is returned from call to backend
   const [userProjects, setUserProjects] = useState([
          // default     update (arg is prev state)
@@ -40,6 +40,9 @@ const ProjectContextProvider = ({ children }) => {
         console.log('ERROR: ', error);
       }
     };
+
+    // ------------------------USER TASKS ------------------------------------------------
+
     const taskEndpoint = 'http://localhost:3000/tasks/all';
     const fetchUserTasks = async () => {
       try {

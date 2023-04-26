@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-// import { TaskContainer } from './TaskContainer.jsx';
+import { TaskContainer } from './TaskContainer.jsx';
 import { TaskContainer2 } from './TaskContainer2.jsx';
 import { ProjectContainer } from './ProjectContainer.jsx';
 import '@atlaskit/css-reset';
@@ -16,7 +16,7 @@ export const App = () => {
         <ProjectContainer />
       </div>
       <div>
-        <TaskContainer2 />
+        <TaskContainer2/>
       </div>
     </div>
   );

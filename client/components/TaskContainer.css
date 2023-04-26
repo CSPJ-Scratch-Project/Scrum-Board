@@ -6,6 +6,10 @@
   grid-template-rows: 100px 100px 1fr;
 }
 
+.columns-title{
+  background-color: aqua;
+}
+
 .projectName {
   display: flex;
   align-items: center;
@@ -42,3 +46,8 @@
 #col-3 {
   border: 2px solid pink;
 }
+
+/* .columns-container{
+  display: flex;
+  flex-direction:row;
+} */
