@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 // import Button from '@mui/material/Button';
 import Task from './Task.jsx';
 import './TaskColumn.css';
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+} from 'react-beautiful-dnd';
 
 const TaskColumn = ({ taskInfo, id, name }) => {
   //create local state for number of tasks

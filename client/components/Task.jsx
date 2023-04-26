@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Task.css';
 
+//this is the doubleclick/deletebutton
+
 const Task = ({ content, state, setState, ind, index }) => {
   // hooks for title text edit field
   const [toggleTitle, setToggleTitle] = useState(true);

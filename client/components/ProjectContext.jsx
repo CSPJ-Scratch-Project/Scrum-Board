@@ -14,11 +14,13 @@ const ProjectContextProvider = ({ children }) => {
   console.log('projext context here');
   //hook to store user project data that is returned from call to backend
   const [userProjects, setUserProjects] = useState([
+         // default     update (arg is prev state)
+         // below is the default
     { id: 1, content: 'scrum board' },
   ]);
   const [userTasks, setUserTasks] = useState([]);
 
-  //runs only on first render
+  //runs only after first render due to the empty array [] in the second arguement;
   useEffect(() => {
     const projectEndpoint = 'http://localhost:3000/projects/5';
     const fetchUserProjects = async () => {
@@ -32,7 +34,7 @@ const ProjectContextProvider = ({ children }) => {
         //test log
         console.log('jsonResult for project data is ', jsonResult);
 
-        //store user project data in our state
+        // update / store user project data in our state
         setUserProjects(jsonResult);
       } catch (error) {
         console.log('ERROR: ', error);
