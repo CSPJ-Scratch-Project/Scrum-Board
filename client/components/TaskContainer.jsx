@@ -12,6 +12,12 @@ import { v4 as uuid } from 'uuid';
 // FIXME: hardcoded for now
 const taskInfo = 'this is task info';
 // fake data generator
+
+//this is a spot that we can start on
+//what is the purpose of this?
+
+//creates an array of all tasks, but this belongs in the task column component
+//if you want the demo to display, uncomment the below 5 lines
 const getItems = (count, offset = 0) =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
     id: `item-${k + offset}-${new Date().getTime()}`,
@@ -28,6 +34,8 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 // Moves an item from one list to another list.
+
+//this is also meant to be in the columns rather than in the task container
 const move = (
   source,
   destination,
@@ -66,7 +74,12 @@ const getListStyle = isDraggingOver => ({
   width: '80%',
 });
 
+
+//this is some hard coded rendering for the demo
 export const TaskContainer = ({ project }) => {
+
+  //potentially this is where we would render the items with getItems from the Project Context
+  //task rendering goes into Task Column
   const [state, setState] = useState([
     getItems(3),
     getItems(2, 3),
@@ -115,7 +128,7 @@ export const TaskContainer = ({ project }) => {
     <div style={{ background: '#577D86', height: '100vh' }}>
       <div className="taskColumns-container ">
         <div className="projectName">Current Project</div>
-        <div className="colunmNamesRow">
+        <div className="columnNamesRow">
           <div>New</div>
           <div>In Progress</div>
           <div>Completed</div>

@@ -6,10 +6,11 @@ import {
   Droppable,
   Draggable,
 } from 'react-beautiful-dnd';
-import { v4 as uuid } from 'uuid'; // creat unique id
+import { v4 as uuid } from 'uuid'; // create unique id
 
 export const ProjectContainer = () => {
   //userProjects and userTasks holds all project data and task data respectively
+  //we can update the below line to remove userTasks since this is not utilized within this component
   const { userProjects, userTasks } = useContext(ProjectContext);
 
   const test = [
@@ -19,41 +20,47 @@ export const ProjectContainer = () => {
     },
   ];
 
+  // check to see if props are being console logged
   console.log('userProjects: ', userProjects, 'userTasks: ', userTasks);
+
+  /* example
+  userrProjects = [
+    { name: 'scrum board' ,
+      id: 23234 },
+    { name: 'test' ,
+    id: 2343454 },
+    { name: 'project 3' ,
+    id: 2334534534 }
+  ]
+  */
 
   // populate array of projects
   const initializeArr = () => {
     const result = userProjects.map(project => ({
+      //we don't need to reassign the id with uuid, we can just utilize it's primary key
       id: uuid(),
       content: project.name,
     }));
+    // result = {id: , content: }
     console.log('this is result in initialize arr: ', result);
     return result;
   };
 
   // setInit(initializeArr());
+  // default state  update state
+  //first element is variable declared based off state, second is function used to update 
+  const [items, setItems] = useState([]);  // items refers to individual tasks in a project
 
-  const [items, setItems] = useState([]);
-
+  //any time userProjects is updated, the component will rerender
   useEffect(() => {
     const result = initializeArr();
     setItems(result);
   }, [userProjects]);
   console.log('this is the item in items: ', items);
 
-  // useEffect(() => {
-  //   setInit(initializeArr());
-  // }, [initItems]);
-
-  // useEffect(() => {}, []);
-
-  // const getItems = (count, offset = 0) =>
-  //   Array.from({ length: count }, (v, k) => k).map(k => ({
-  //     id: `item-${k + offset}-${new Date().getTime()}`,
-  //     content: `Project  ${k + offset}`,
-  //   }));
 
   // helper function to reorder the result
+  //this is used in the drag n drop feature
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
@@ -63,6 +70,7 @@ export const ProjectContainer = () => {
   };
   const grid = 8; // gap spacing
 
+  //drag n drop styling
   const getItemStyle = (isDragging, draggableStyle) => ({
     // some basic styles to make the items look a bit nicer
     userSelect: 'none',
@@ -78,6 +86,7 @@ export const ProjectContainer = () => {
     ...draggableStyle,
   });
 
+  //more drag n drop styling, changes dropable area to light blue
   const getListStyle = isDraggingOver => ({
     background: isDraggingOver ? 'lightblue' : 'lightblue',
     padding: grid,
@@ -89,6 +98,7 @@ export const ProjectContainer = () => {
 
   console.log('items: ', items);
 
+  //this updates the project array based on where the item was dropped in the UI
   function onDragEnd(result) {
     // dropped outside the list
     if (!result.destination) {
@@ -104,11 +114,17 @@ export const ProjectContainer = () => {
     setItems(updatedItems);
   }
 
+
   const handleAddProject = () => {
+
+    //creating a new project object
     const newProject = {
       id: uuid(), // generate a unique ID for the new project
       content: `Project ${items.length + 1}`,
     };
+
+    //somewhere in *here* we may need to input a post request in order to send this project to the database
+
     const updatedItems = [...items, newProject]; // add the new project to the items array
     setItems(updatedItems);
   };
@@ -162,6 +178,7 @@ export const ProjectContainer = () => {
               }}
             ></div>
             <div>User</div>
+            {/* update avatar */}
             <form style={{ textAlign: 'center' }}>
               <input
                 type="file"
@@ -171,6 +188,7 @@ export const ProjectContainer = () => {
                   justifyContent: 'center',
                   marginInline: '20%',
                 }}
+                // this is where you can update the image photo for your user
                 onChange={event => {
                   const file = event.target.files[0];
                   if (file) {
